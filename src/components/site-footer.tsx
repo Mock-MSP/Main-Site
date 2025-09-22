@@ -1,74 +1,62 @@
 import Link from "next/link";
-import { Sparkles } from "lucide-react";
 
-export function SiteFooter() {
+import { FooterCopy } from "@/lib/copy";
+
+import { Sparkles, ArrowUpRight } from "lucide-react";
+
+type SiteFooterProps = {
+  copy: FooterCopy;
+};
+
+export function SiteFooter({ copy }: SiteFooterProps) {
   return (
-    <footer className="py-10">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid md:grid-cols-4 gap-8 text-sm">
-          <div>
-            <div className="flex items-center gap-2">
-              <div className="h-8 w-8 rounded-2xl bg-slate-900 text-white grid place-items-center">
-                <Sparkles className="h-4 w-4" />
+    <footer className="mt-24 bg-gradient-to-br from-slate-900 via-sky-950 to-emerald-950 text-slate-100">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div className="grid gap-10 lg:grid-cols-[1.2fr_2fr] items-start">
+          <div className="space-y-4">
+            <div className="flex items-center gap-3">
+              <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-white/10 text-white">
+                <Sparkles className="h-5 w-5" aria-hidden="true" />
               </div>
-              <span className="font-semibold">MockMSP</span>
+              <div>
+                <span className="text-lg font-semibold tracking-tight">MockMSP</span>
+                <p className="text-xs text-slate-300">{copy.localeNote}</p>
+              </div>
             </div>
-            <p className="mt-3 text-slate-600">
-              Managed IT &amp; Security for modern businesses.
-            </p>
+            <p className="text-sm leading-relaxed text-slate-200 max-w-xl">{copy.tagline}</p>
           </div>
-          <div>
-            <div className="font-semibold">Company</div>
-            <ul className="mt-3 space-y-2 text-slate-600">
-              <li>
-                <Link href="/#services" className="hover:text-slate-900">
-                  Services
-                </Link>
-              </li>
-              <li>
-                <Link href="/#pricing" className="hover:text-slate-900">
-                  Plans
-                </Link>
-              </li>
-              <li>
-                <Link href="/about" className="hover:text-slate-900">
-                  About
-                </Link>
-              </li>
-            </ul>
-          </div>
-          <div>
-            <div className="font-semibold">Resources</div>
-            <ul className="mt-3 space-y-2 text-slate-600">
-              <li>
-                <Link href="#" className="hover:text-slate-900">
-                  Service Catalog
-                </Link>
-              </li>
-              <li>
-                <Link href="#" className="hover:text-slate-900">
-                  Incident Runbook
-                </Link>
-              </li>
-              <li>
-                <Link href="#" className="hover:text-slate-900">
-                  Security Baseline
-                </Link>
-              </li>
-            </ul>
-          </div>
-          <div>
-            <div className="font-semibold">Compliance</div>
-            <ul className="mt-3 space-y-2 text-slate-600">
-              <li>ISO-aligned controls</li>
-              <li>DPA on request</li>
-              <li>EU data residency options</li>
-            </ul>
+          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4 text-sm">
+            {copy.columns.map((column) => (
+              <div key={column.title} className="space-y-3">
+                <div className="text-xs font-semibold uppercase tracking-wide text-slate-300">
+                  {column.title}
+                </div>
+                <ul className="space-y-2 text-slate-200">
+                  {column.links.map((link) => (
+                    <li key={link.label}>
+                      <Link
+                        href={link.href}
+                        className="inline-flex items-center gap-1 text-slate-200/90 transition hover:text-white"
+                      >
+                        <span>{link.label}</span>
+                        <ArrowUpRight className="h-3.5 w-3.5" aria-hidden="true" />
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
           </div>
         </div>
-        <div className="mt-8 border-t pt-6 text-xs text-slate-500 flex flex-wrap items-center justify-between gap-2">
+        <div className="mt-12 flex flex-wrap items-center justify-between gap-4 border-t border-white/10 pt-6 text-xs text-slate-300">
           <span>© {new Date().getFullYear()} MockMSP. All rights reserved.</span>
-          <span>Amsterdam · London</span>
+          <div className="flex flex-wrap items-center gap-4">
+            {copy.legal.map((item) => (
+              <Link key={item.label} href={item.href} className="hover:text-white">
+                {item.label}
+              </Link>
+            ))}
+          </div>
         </div>
       </div>
     </footer>
