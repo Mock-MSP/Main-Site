@@ -315,6 +315,7 @@ export const copy = {
               "AvePoint backup & recovery",
             ],
             cta: "Request pricing",
+            featured: false,
           },
           {
             name: "Secure",
@@ -336,6 +337,7 @@ export const copy = {
               "Quarterly executive reviews",
             ],
             cta: "Request pricing",
+            featured: false,
           },
         ],
       },
@@ -888,6 +890,7 @@ export const copy = {
               "AvePoint back-up en herstel",
             ],
             cta: "Vraag prijzen op",
+            featured: false,
           },
           {
             name: "Secure",
@@ -909,6 +912,7 @@ export const copy = {
               "Kwartaalreviews voor leiderschap",
             ],
             cta: "Vraag prijzen op",
+            featured: false,
           },
         ],
       },
