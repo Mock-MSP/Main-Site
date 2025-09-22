@@ -37,6 +37,7 @@ const sectionsWrapperClass = "space-y-24 sm:space-y-32";
 const surfaceClass =
   "rounded-3xl border border-slate-200/70 bg-white shadow-xl shadow-slate-950/5";
 
+
 const initialsFor = (name: string) =>
   name
     .split(" ")
@@ -209,6 +210,7 @@ export function AboutPage({ locale, header, footer, content }: AboutPageProps) {
               </div>
             </div>
           </section>
+
 
           <section>
             <div className={containerClass}>
