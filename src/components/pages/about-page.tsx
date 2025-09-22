@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
 
 import { SiteHeader } from "@/components/site-header";
@@ -30,6 +31,8 @@ const stagger = { animate: { transition: { staggerChildren: 0.08 } } };
 const missionIcons = [ShieldCheck, BarChart3, Users] as const;
 const valueIcons = [ShieldCheck, BarChart3, Users, Sparkles] as const;
 
+const containerClass = "mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8";
+
 const initialsFor = (name: string) =>
   name
     .split(" ")
@@ -43,16 +46,18 @@ type AboutPageProps = {
   content: AboutCopy;
 };
 
-const resolveHref = (href: string, locale: Locale) => {
-  if (href.startsWith("#")) {
-    return `${locale === "nl" ? "/nl" : ""}${href}`;
-  }
-  return href;
-};
-
 export function AboutPage({ locale, header, footer, content }: AboutPageProps) {
+  const pathname = usePathname();
+  const homePath = locale === "nl" ? "/nl" : "/";
+  const resolveHref = (href: string) => {
+    if (href.startsWith("#")) {
+      return pathname === homePath ? href : `${homePath}${href}`;
+    }
+    return href;
+  };
+
   return (
-    <div className="min-h-screen bg-white text-slate-900" lang={locale}>
+    <div className="flex min-h-screen flex-col bg-white text-slate-900" lang={locale}>
       <a
         href="#main"
         className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 rounded-full bg-slate-900 px-4 py-2 text-sm font-semibold text-white"
@@ -61,13 +66,13 @@ export function AboutPage({ locale, header, footer, content }: AboutPageProps) {
       </a>
       <SiteHeader locale={locale} copy={header} />
 
-      <main id="main" className="pb-24">
+      <main id="main" className="flex-1 pb-24">
         <section className="relative overflow-hidden bg-gradient-to-br from-slate-900 via-sky-950 to-emerald-950 py-20 text-white">
           <div className="absolute inset-0 -z-10">
             <div className="absolute left-1/4 top-10 h-72 w-72 rounded-full bg-teal-400/20 blur-3xl" />
             <div className="absolute -bottom-20 right-10 h-80 w-80 rounded-full bg-sky-400/20 blur-3xl" />
           </div>
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className={containerClass}>
             <motion.div initial="initial" animate="animate" variants={stagger} className="grid gap-12 lg:grid-cols-[1.2fr_1fr]">
               <motion.div variants={fadeUp} className="space-y-6">
                 <div className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-1 text-xs font-semibold uppercase tracking-wide text-emerald-200">
@@ -82,13 +87,13 @@ export function AboutPage({ locale, header, footer, content }: AboutPageProps) {
                 </div>
                 <div className="flex flex-wrap items-center gap-4">
                   <Button className="rounded-full bg-white/90 px-6 py-2 text-slate-900 hover:bg-white" asChild>
-                    <Link href={resolveHref(content.hero.primaryCta.href, locale)}>
+                    <Link href={resolveHref(content.hero.primaryCta.href)}>
                       {content.hero.primaryCta.label}
                       <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
                     </Link>
                   </Button>
                   <Button variant="secondary" className="rounded-full border-white/60 bg-white/10 text-white hover:bg-white/20" asChild>
-                    <Link href={content.hero.secondaryCta.href}>{content.hero.secondaryCta.label}</Link>
+                    <Link href={resolveHref(content.hero.secondaryCta.href)}>{content.hero.secondaryCta.label}</Link>
                   </Button>
                 </div>
               </motion.div>
@@ -108,7 +113,7 @@ export function AboutPage({ locale, header, footer, content }: AboutPageProps) {
         </section>
 
         <section className="-mt-16 pb-20">
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className={containerClass}>
             <Card className="rounded-3xl border border-slate-200/70 bg-white/80 shadow-xl">
               <CardContent className="grid gap-10 p-8 lg:grid-cols-[1.2fr_1fr]">
                 <div className="space-y-4">
@@ -151,7 +156,7 @@ export function AboutPage({ locale, header, footer, content }: AboutPageProps) {
         </section>
 
         <section className="pb-20">
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className={containerClass}>
             <div className="space-y-3 text-center">
               <h2 className="text-2xl font-semibold text-slate-900">{content.timeline.title}</h2>
             </div>
@@ -169,7 +174,7 @@ export function AboutPage({ locale, header, footer, content }: AboutPageProps) {
         </section>
 
         <section className="pb-20">
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className={containerClass}>
             <div className="space-y-3 text-center">
               <h2 className="text-2xl font-semibold text-slate-900">{content.values.title}</h2>
             </div>
@@ -193,14 +198,14 @@ export function AboutPage({ locale, header, footer, content }: AboutPageProps) {
         </section>
 
         <section className="pb-20">
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className={containerClass}>
             <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
               <div className="space-y-3">
                 <h2 className="text-2xl font-semibold text-slate-900">{content.team.title}</h2>
                 <p className="text-sm text-slate-600 leading-relaxed">{content.team.description}</p>
               </div>
               <Button variant="outline" className="rounded-full border-slate-200" asChild>
-                <Link href={resolveHref(content.hero.primaryCta.href, locale)}>{content.hero.primaryCta.label}</Link>
+                <Link href={resolveHref(content.hero.primaryCta.href)}>{content.hero.primaryCta.label}</Link>
               </Button>
             </div>
             <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -228,8 +233,8 @@ export function AboutPage({ locale, header, footer, content }: AboutPageProps) {
           </div>
         </section>
 
-        <section id="contact" className="pb-12">
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <section id="contact" className="pb-12 scroll-mt-32">
+          <div className={containerClass}>
             <Card className="rounded-3xl border border-slate-200/70 bg-gradient-to-br from-slate-900 via-sky-950 to-emerald-900 text-white shadow-xl">
               <CardContent className="flex flex-col gap-8 p-8 md:flex-row md:items-center md:justify-between">
                 <div className="space-y-3">
@@ -245,7 +250,7 @@ export function AboutPage({ locale, header, footer, content }: AboutPageProps) {
                   </ul>
                 </div>
                 <Button className="rounded-full bg-white/90 px-6 py-2 text-slate-900 hover:bg-white" asChild>
-                  <Link href={resolveHref(content.closing.cta.href, locale)}>{content.closing.cta.label}</Link>
+                  <Link href={resolveHref(content.closing.cta.href)}>{content.closing.cta.label}</Link>
                 </Button>
               </CardContent>
             </Card>
@@ -253,7 +258,7 @@ export function AboutPage({ locale, header, footer, content }: AboutPageProps) {
         </section>
       </main>
 
-      <SiteFooter copy={footer} />
+      <SiteFooter locale={locale} copy={footer} />
     </div>
   );
 }
