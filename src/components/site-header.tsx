@@ -18,6 +18,18 @@ export function SiteHeader({ locale, copy }: SiteHeaderProps) {
   const [open, setOpen] = React.useState(false);
   const pathname = usePathname();
 
+  const homePath = locale === "nl" ? "/nl" : "/";
+  const isOnHome = pathname === homePath;
+  const resolveHref = React.useCallback(
+    (href: string) => {
+      if (href.startsWith("#")) {
+        return isOnHome ? href : `${homePath}${href}`;
+      }
+      return href;
+    },
+    [homePath, isOnHome],
+  );
+
   const isActive = (href: string) => {
     if (href.startsWith("#")) {
       return false;
@@ -39,7 +51,9 @@ export function SiteHeader({ locale, copy }: SiteHeaderProps) {
             className="h-7 rounded-full bg-white/20 text-white hover:bg-white/30"
             asChild
           >
-            <Link href={copy.announcementCta.href}>{copy.announcementCta.label}</Link>
+            <Link href={resolveHref(copy.announcementCta.href)}>
+              {copy.announcementCta.label}
+            </Link>
           </Button>
         </div>
       </div>
@@ -66,10 +80,11 @@ export function SiteHeader({ locale, copy }: SiteHeaderProps) {
               {copy.nav.map((link) => (
                 <Link
                   key={link.label}
-                  href={link.href}
+                  href={resolveHref(link.href)}
                   className={`transition-colors hover:text-slate-900 ${
                     isActive(link.href) ? "text-slate-900" : ""
                   }`}
+                  aria-current={isActive(link.href) ? "page" : undefined}
                 >
                   {link.label}
                 </Link>
@@ -84,10 +99,14 @@ export function SiteHeader({ locale, copy }: SiteHeaderProps) {
                 {copy.languageToggle.label}
               </Link>
               <Button variant="outline" className="rounded-full border-slate-200" asChild>
-                <Link href={copy.secondaryAction.href}>{copy.secondaryAction.label}</Link>
+                <Link href={resolveHref(copy.secondaryAction.href)}>
+                  {copy.secondaryAction.label}
+                </Link>
               </Button>
               <Button className="rounded-full" asChild>
-                <Link href={copy.primaryAction.href}>{copy.primaryAction.label}</Link>
+                <Link href={resolveHref(copy.primaryAction.href)}>
+                  {copy.primaryAction.label}
+                </Link>
               </Button>
             </div>
             <button
@@ -105,8 +124,9 @@ export function SiteHeader({ locale, copy }: SiteHeaderProps) {
               {copy.nav.map((link) => (
                 <Link
                   key={link.label}
-                  href={link.href}
+                  href={resolveHref(link.href)}
                   className="block rounded-xl px-3 py-2 text-sm font-medium text-slate-700 hover:bg-slate-100"
+                  aria-current={isActive(link.href) ? "page" : undefined}
                   onClick={() => setOpen(false)}
                 >
                   {link.label}
@@ -122,12 +142,12 @@ export function SiteHeader({ locale, copy }: SiteHeaderProps) {
                   {copy.languageToggle.label}
                 </Link>
                 <Button variant="outline" className="rounded-full border-slate-200 flex-1" asChild>
-                  <Link href={copy.secondaryAction.href} onClick={() => setOpen(false)}>
+                  <Link href={resolveHref(copy.secondaryAction.href)} onClick={() => setOpen(false)}>
                     {copy.secondaryAction.label}
                   </Link>
                 </Button>
                 <Button className="rounded-full flex-1" asChild>
-                  <Link href={copy.primaryAction.href} onClick={() => setOpen(false)}>
+                  <Link href={resolveHref(copy.primaryAction.href)} onClick={() => setOpen(false)}>
                     {copy.primaryAction.label}
                   </Link>
                 </Button>

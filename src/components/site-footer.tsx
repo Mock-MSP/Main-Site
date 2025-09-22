@@ -1,14 +1,28 @@
-import Link from "next/link";
+"use client";
 
-import { FooterCopy } from "@/lib/copy";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+
+import { FooterCopy, Locale } from "@/lib/copy";
 
 import { Sparkles, ArrowUpRight } from "lucide-react";
 
 type SiteFooterProps = {
+  locale: Locale;
   copy: FooterCopy;
 };
 
-export function SiteFooter({ copy }: SiteFooterProps) {
+export function SiteFooter({ locale, copy }: SiteFooterProps) {
+  const pathname = usePathname();
+  const homePath = locale === "nl" ? "/nl" : "/";
+  const isOnHome = pathname === homePath;
+  const resolveHref = (href: string) => {
+    if (href.startsWith("#")) {
+      return isOnHome ? href : `${homePath}${href}`;
+    }
+    return href;
+  };
+
   return (
     <footer className="mt-24 bg-gradient-to-br from-slate-900 via-sky-950 to-emerald-950 text-slate-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
@@ -35,7 +49,7 @@ export function SiteFooter({ copy }: SiteFooterProps) {
                   {column.links.map((link) => (
                     <li key={link.label}>
                       <Link
-                        href={link.href}
+                        href={resolveHref(link.href)}
                         className="inline-flex items-center gap-1 text-slate-200/90 transition hover:text-white"
                       >
                         <span>{link.label}</span>
@@ -52,7 +66,7 @@ export function SiteFooter({ copy }: SiteFooterProps) {
           <span>© {new Date().getFullYear()} MockMSP. All rights reserved.</span>
           <div className="flex flex-wrap items-center gap-4">
             {copy.legal.map((item) => (
-              <Link key={item.label} href={item.href} className="hover:text-white">
+              <Link key={item.label} href={resolveHref(item.href)} className="hover:text-white">
                 {item.label}
               </Link>
             ))}

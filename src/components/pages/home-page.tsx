@@ -68,6 +68,9 @@ const contactIconFor = (label: string) => {
   return MessageSquare;
 };
 
+const containerClass = "mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8";
+const contactContainerClass = "mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8";
+
 type HomePageProps = {
   locale: Locale;
   header: HeaderCopy;
@@ -77,7 +80,7 @@ type HomePageProps = {
 
 export function HomePage({ locale, header, footer, content }: HomePageProps) {
   return (
-    <div className="min-h-screen bg-white text-slate-900" lang={locale}>
+    <div className="flex min-h-screen flex-col bg-white text-slate-900" lang={locale}>
       <a
         href="#main"
         className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 rounded-full bg-slate-900 px-4 py-2 text-sm font-semibold text-white"
@@ -86,14 +89,14 @@ export function HomePage({ locale, header, footer, content }: HomePageProps) {
       </a>
       <SiteHeader locale={locale} copy={header} />
 
-      <main id="main">
+      <main id="main" className="flex-1">
         <section className="relative overflow-hidden pb-20 pt-14 sm:pt-20">
           <div className="absolute inset-0 -z-10">
             <div className="absolute -top-32 -left-32 h-64 w-64 rounded-full bg-teal-200/50 blur-3xl" />
             <div className="absolute top-20 -right-28 h-80 w-80 rounded-full bg-sky-200/50 blur-3xl" />
             <div className="absolute bottom-[-120px] left-1/3 h-72 w-72 rounded-full bg-emerald-200/40 blur-3xl" />
           </div>
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className={containerClass}>
             <motion.div initial="initial" animate="animate" variants={stagger} className="grid gap-16 lg:grid-cols-[1.45fr_1fr]">
               <motion.div variants={fadeUp} className="space-y-6">
                 <div className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-teal-600/10 via-sky-600/10 to-emerald-500/10 px-4 py-1 text-xs font-semibold text-slate-700 shadow-sm">
@@ -175,7 +178,7 @@ export function HomePage({ locale, header, footer, content }: HomePageProps) {
         </section>
 
         <section className="pb-16">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className={containerClass}>
             <div className="rounded-3xl border border-slate-200/70 bg-white/80 p-8 shadow-lg">
               <div className="text-center">
                 <h2 className="text-sm font-semibold uppercase tracking-wide text-slate-500">
@@ -199,8 +202,8 @@ export function HomePage({ locale, header, footer, content }: HomePageProps) {
           </div>
         </section>
 
-        <section id="outcomes" className="bg-gradient-to-r from-teal-50 via-white to-emerald-50 py-16">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <section id="outcomes" className="bg-gradient-to-r from-teal-50 via-white to-emerald-50 py-16 scroll-mt-32">
+          <div className={containerClass}>
             <div className="mx-auto grid gap-6 text-center sm:max-w-3xl">
               <h2 className="text-2xl font-semibold text-slate-900">{content.outcomes.title}</h2>
               <p className="text-slate-600">{content.outcomes.description}</p>
@@ -218,8 +221,8 @@ export function HomePage({ locale, header, footer, content }: HomePageProps) {
           </div>
         </section>
 
-        <section id="services" className="py-20">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <section id="services" className="py-20 scroll-mt-32">
+          <div className={containerClass}>
             <div className="md:flex md:items-end md:justify-between">
               <div className="max-w-3xl space-y-3">
                 <h2 className="text-3xl font-semibold text-slate-900">{content.services.title}</h2>
@@ -269,7 +272,7 @@ export function HomePage({ locale, header, footer, content }: HomePageProps) {
         </section>
 
         <section className="py-20">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className={containerClass}>
             <div className="grid gap-8 lg:grid-cols-[1.1fr_1fr]">
               <div className="space-y-4">
                 <h2 className="text-2xl font-semibold text-slate-900">{content.accelerators.title}</h2>
@@ -320,8 +323,8 @@ export function HomePage({ locale, header, footer, content }: HomePageProps) {
           </div>
         </section>
 
-        <section id="industries" className="border-y border-slate-200/70 bg-white py-20">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <section id="industries" className="border-y border-slate-200/70 bg-white py-20 scroll-mt-32">
+          <div className={containerClass}>
             <div className="space-y-4 text-center">
               <h2 className="text-2xl font-semibold text-slate-900">{content.industries.title}</h2>
               <p className="text-slate-600">{content.industries.description}</p>
@@ -338,8 +341,8 @@ export function HomePage({ locale, header, footer, content }: HomePageProps) {
           </div>
         </section>
 
-        <section id="process" className="py-20">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <section id="process" className="py-20 scroll-mt-32">
+          <div className={containerClass}>
             <div className="grid gap-8 lg:grid-cols-[1fr_1.2fr]">
               <div className="space-y-4">
                 <h2 className="text-2xl font-semibold text-slate-900">{content.process.title}</h2>
@@ -361,7 +364,7 @@ export function HomePage({ locale, header, footer, content }: HomePageProps) {
         </section>
 
         <section className="bg-gradient-to-br from-slate-900 via-sky-950 to-emerald-950 py-20 text-white">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className={containerClass}>
             <div className="md:flex md:items-center md:justify-between">
               <div className="max-w-3xl space-y-3">
                 <h2 className="text-2xl font-semibold text-white">{content.testimonials.title}</h2>
@@ -384,8 +387,8 @@ export function HomePage({ locale, header, footer, content }: HomePageProps) {
           </div>
         </section>
 
-        <section id="pricing" className="py-20">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <section id="pricing" className="py-20 scroll-mt-32">
+          <div className={containerClass}>
             <div className="mx-auto max-w-3xl space-y-3 text-center">
               <h2 className="text-2xl font-semibold text-slate-900">{content.plans.title}</h2>
               <p className="text-slate-600">{content.plans.description}</p>
@@ -428,7 +431,7 @@ export function HomePage({ locale, header, footer, content }: HomePageProps) {
           </div>
         </section>
 
-        <section id="faq" className="py-20">
+        <section id="faq" className="py-20 scroll-mt-32">
           <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 className="text-2xl font-semibold text-slate-900">{content.faq.title}</h2>
             <Accordion type="single" collapsible className="mt-6 divide-y divide-slate-200 rounded-2xl border border-slate-200/70 bg-white/80 shadow-sm">
@@ -446,8 +449,8 @@ export function HomePage({ locale, header, footer, content }: HomePageProps) {
           </div>
         </section>
 
-        <section id="contact" className="pb-24">
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <section id="contact" className="pb-24 scroll-mt-32">
+          <div className={contactContainerClass}>
             <Card className="rounded-3xl border border-slate-200/70 bg-white/80 shadow-xl">
               <CardContent className="grid gap-12 p-8 lg:grid-cols-[1fr_1.3fr]">
                 <div className="space-y-4">
@@ -512,7 +515,7 @@ export function HomePage({ locale, header, footer, content }: HomePageProps) {
         </section>
       </main>
 
-      <SiteFooter copy={footer} />
+      <SiteFooter locale={locale} copy={footer} />
     </div>
   );
 }
