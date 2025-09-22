@@ -1,22 +1,20 @@
 'use client';
-import React from "react";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/components/ui/accordion";
 import { Input } from "@/components/ui/input";
+import { SiteHeader } from "@/components/site-header";
+import { SiteFooter } from "@/components/site-footer";
 import {
   Check,
   Shield,
   Users,
   ArrowRight,
-  Sparkles,
   Mail,
   Phone,
   Globe,
-  Menu,
-  X,
-  Building2,
   Clock,
   Headphones,
   MonitorSmartphone,
@@ -35,129 +33,166 @@ const fadeUp = {
 };
 const stagger = { animate: { transition: { staggerChildren: 0.08 } } };
 
-export default function MockMSP() {
-  const [open, setOpen] = React.useState(false);
+const partners = [
+  {
+    name: "AvePoint",
+    logo:
+      "https://w7.pngwing.com/pngs/993/687/png-transparent-avepoint-microsoft-office-365-business-sharepoint-organization-isaac-text-public-relations-logo.png",
+    width: 160,
+    height: 60,
+  },
+  {
+    name: "1Password",
+    logo: "https://upload.wikimedia.org/wikipedia/commons/0/02/1Password_wordmark_blue_2023.svg",
+    width: 200,
+    height: 60,
+  },
+  {
+    name: "Sophos",
+    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Sophos_logo.svg/2560px-Sophos_logo.svg.png",
+    width: 200,
+    height: 60,
+  },
+  {
+    name: "Kaseya",
+    logo:
+      "https://eu-images.contentstack.com/v3/assets/blt10e444bce2d36aa8/blta6ce79125064ffd1/65266c426cbba71a1628b0b0/kaseyalogocymk_0.gif?disable=upscale&width=1200&height=630&fit=crop",
+    width: 200,
+    height: 60,
+  },
+];
 
+export default function MockMSP() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-50 via-white to-slate-50 text-slate-800">
       {/* Skip Link */}
       <a href="#main" className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 bg-slate-900 text-white px-3 py-2 rounded">Skip to content</a>
+      <SiteHeader />
 
-      {/* Top Bar */}
-      <div className="sticky top-0 z-[60] bg-gradient-to-r from-indigo-600 to-fuchsia-600 text-white text-xs md:text-sm py-2">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
-          <p className="font-medium">Managed IT & Security for modern businesses</p>
-          <Button variant="secondary" size="sm" className="h-7 rounded-full">Book discovery</Button>
-        </div>
-      </div>
-
-      {/* Nav */}
-      <header className="sticky top-8 z-50 backdrop-blur supports-[backdrop-filter]:bg-white/70 bg-white/60 border-b border-slate-200/60 rounded-t-2xl">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex h-16 items-center justify-between">
-            <div className="flex items-center gap-2">
-              <div className="h-8 w-8 rounded-2xl bg-slate-900 text-white grid place-items-center shadow-sm">
-                <Sparkles className="h-4 w-4" />
-              </div>
-              <span className="font-semibold text-lg tracking-tight">MockMSP</span>
-            </div>
-            <nav className="hidden md:flex items-center gap-8 text-sm">
-              <a href="#services" className="hover:text-slate-900 text-slate-600">Services</a>
-              <a href="#outcomes" className="hover:text-slate-900 text-slate-600">Outcomes</a>
-              <a href="#industries" className="hover:text-slate-900 text-slate-600">Industries</a>
-              <a href="#process" className="hover:text-slate-900 text-slate-600">Onboarding</a>
-              <a href="#pricing" className="hover:text-slate-900 text-slate-600">Plans</a>
-              <a href="#contact" className="hover:text-slate-900 text-slate-600">Contact</a>
-            </nav>
-            <div className="hidden md:flex items-center gap-2">
-              <Button variant="ghost" className="rounded-2xl">Client Portal</Button>
-              <Button className="rounded-2xl">Get a quote</Button>
-            </div>
-            <button aria-label="Toggle menu" className="md:hidden rounded-xl p-2 hover:bg-slate-100" onClick={() => setOpen((v) => !v)}>
-              {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-            </button>
+      <main id="main">
+        {/* Hero */}
+        <section className="relative overflow-hidden">
+          <div className="absolute inset-0 -z-10">
+            <div className="absolute -top-24 -right-24 h-72 w-72 bg-indigo-200/50 rounded-full blur-3xl" />
+            <div className="absolute top-40 -left-24 h-72 w-72 bg-cyan-200/50 rounded-full blur-3xl" />
           </div>
-        </div>
-        {open && (
-          <div className="md:hidden border-t border-slate-200 bg-white">
-            <div className="px-4 py-3 space-y-3">
-              {["Services","Outcomes","Industries","Onboarding","Plans","Contact"].map((label) => (
-                <a key={label} href={`#${label.toLowerCase()}`} className="block text-slate-700" onClick={() => setOpen(false)}>
-                  {label}
-                </a>
-              ))}
-              <div className="flex gap-2 pt-2">
-                <Button variant="ghost" className="rounded-2xl w-full">Client Portal</Button>
-                <Button className="rounded-2xl w-full">Get a quote</Button>
-              </div>
-            </div>
-          </div>
-        )}
-      </header>
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-20">
+            <motion.div initial="initial" animate="animate" variants={stagger} className="grid md:grid-cols-2 gap-10 items-center">
+              <motion.div variants={fadeUp}>
+                <div className="inline-flex items-center gap-2 rounded-full px-3 py-1 text-xs bg-slate-900 text-white shadow-sm">
+                  <Shield className="h-3.5 w-3.5" /> MSP done the right way
+                </div>
+                <h1 className="mt-4 text-4xl sm:text-5xl font-bold tracking-tight text-slate-900">
+                  Dutch &amp; UK Microsoft 365 managed services for growing teams
+                </h1>
+                <p className="mt-4 text-slate-600 text-lg">
+                  Founded in 2025 by Amsterdam-based Martijn van Dijk and London-based James Whitfield, MockMSP specialises in Microsoft 365 for SMBs ready to stretch into the SME space.
+                </p>
+                <p className="mt-4 text-slate-600">
+                  Our 15-person pod keeps 40 clients secure, compliant, and productive with automation, identity governance, and user adoption coaching that scales with every new hire.
+                </p>
+                <div className="mt-6 flex flex-wrap gap-3">
+                  <Button className="rounded-2xl">
+                    Get a quote <ArrowRight className="ml-2 h-4 w-4" />
+                  </Button>
+                  <Button variant="secondary" className="rounded-2xl">
+                    Book discovery
+                  </Button>
+                </div>
+                <div className="mt-6 flex flex-wrap items-center gap-6 text-sm text-slate-500">
+                  <div className="flex items-center gap-2">
+                    <Headphones className="h-4 w-4" /> Follow-the-sun service desk
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Users className="h-4 w-4" /> 15 specialists across NL &amp; UK
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Clock className="h-4 w-4" /> 30-day onboarding playbook
+                  </div>
+                </div>
+              </motion.div>
 
-      {/* Hero */}
-      <section className="relative overflow-hidden">
-        <div className="absolute inset-0 -z-10">
-          <div className="absolute -top-24 -right-24 h-72 w-72 bg-indigo-200/50 rounded-full blur-3xl" />
-          <div className="absolute top-40 -left-24 h-72 w-72 bg-cyan-200/50 rounded-full blur-3xl" />
-        </div>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-20">
-          <motion.div initial="initial" animate="animate" variants={stagger} className="grid md:grid-cols-2 gap-10 items-center">
-            <motion.div variants={fadeUp}>
-              <div className="inline-flex items-center gap-2 rounded-full px-3 py-1 text-xs bg-slate-900 text-white shadow-sm">
-                <Shield className="h-3.5 w-3.5" /> Your business, secured & supported
-              </div>
-              <h1 className="mt-4 text-4xl sm:text-5xl font-bold tracking-tight text-slate-900">
-                Managed IT that <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 to-cyan-500">just works</span>
-              </h1>
-              <p className="mt-4 text-slate-600 text-lg">
-                We manage, secure, and modernize your Microsoft 365 and cloud environment so your team can focus on customers—not tickets.
-              </p>
-              <div className="mt-6 flex flex-wrap gap-3">
-                <Button className="rounded-2xl">Get a quote <ArrowRight className="ml-2 h-4 w-4" /></Button>
-                <Button variant="secondary" className="rounded-2xl">Book discovery</Button>
-              </div>
-              <div className="mt-6 flex items-center gap-6 text-sm text-slate-500">
-                <div className="flex items-center gap-2"><Headphones className="h-4 w-4" /> 24/7 support</div>
-                <div className="flex items-center gap-2"><Clock className="h-4 w-4" /> SLA-backed response</div>
-              </div>
-            </motion.div>
-
-            {/* Hero proof card */}
-            <motion.div variants={fadeUp}>
-              <Card className="rounded-3xl shadow-lg">
-                <CardHeader>
-                  <CardTitle className="text-lg">What we manage for you</CardTitle>
-                </CardHeader>
-                <CardContent className="grid sm:grid-cols-2 gap-4">
-                  {[{icon:<MonitorSmartphone className="h-4 w-4"/>,label:"Modern Workplace"},{icon:<Lock className="h-4 w-4"/>,label:"Security & Compliance"},{icon:<Cloud className="h-4 w-4"/>,label:"Cloud & Data"},{icon:<Users className="h-4 w-4"/>,label:"Identity & Access"},{icon:<Cpu className="h-4 w-4"/>,label:"Automation"},{icon:<FileCheck2 className="h-4 w-4"/>,label:"Governance"}].map((i,idx)=> (
-                    <div key={idx} className="flex items-center gap-3">
-                      <div className="h-8 w-8 rounded-xl bg-slate-100 grid place-items-center">{i.icon}</div>
-                      <span className="text-sm font-medium">{i.label}</span>
+              {/* Hero proof card */}
+              <motion.div variants={fadeUp}>
+                <Card className="rounded-3xl shadow-lg">
+                  <CardHeader className="pb-4">
+                    <CardTitle className="text-lg">Snapshot of our pod</CardTitle>
+                  </CardHeader>
+                  <CardContent className="space-y-5 text-sm text-slate-600">
+                    <div className="space-y-3 text-slate-700">
+                      <div className="flex items-center gap-3">
+                        <Users className="h-4 w-4" /> 15 Microsoft 365 specialists across Amsterdam, Rotterdam &amp; London
+                      </div>
+                      <div className="flex items-center gap-3">
+                        <Globe className="h-4 w-4" /> 40 managed SMB and SME clients in finance, retail &amp; professional services
+                      </div>
+                      <div className="flex items-center gap-3">
+                        <Shield className="h-4 w-4" /> Co-founded by Martijn van Dijk (NL) &amp; James Whitfield (UK)
+                      </div>
                     </div>
-                  ))}
-                </CardContent>
-              </Card>
+                    <div className="pt-5 border-t border-slate-200">
+                      <div className="text-xs font-semibold uppercase tracking-wide text-slate-500 mb-3">
+                        What we manage for you
+                      </div>
+                      <div className="grid sm:grid-cols-2 gap-4">
+                        {[
+                          { icon: <MonitorSmartphone className="h-4 w-4" />, label: "Modern Workplace" },
+                          { icon: <Lock className="h-4 w-4" />, label: "Security & Compliance" },
+                          { icon: <Cloud className="h-4 w-4" />, label: "Cloud & Data" },
+                          { icon: <Users className="h-4 w-4" />, label: "Identity & Access" },
+                          { icon: <Cpu className="h-4 w-4" />, label: "Automation" },
+                          { icon: <FileCheck2 className="h-4 w-4" />, label: "Governance" },
+                        ].map((i, idx) => (
+                          <div key={idx} className="flex items-center gap-3">
+                            <div className="h-8 w-8 rounded-xl bg-slate-100 grid place-items-center">{i.icon}</div>
+                            <span className="text-sm font-medium">{i.label}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </motion.div>
             </motion.div>
-          </motion.div>
 
-          {/* Trust strip */}
-          <div className="mt-12 grid grid-cols-2 sm:grid-cols-4 gap-4 text-center text-xs text-slate-500">
-            {["Microsoft 365","Entra ID","Intune","Azure"].map((v)=>(
-              <div key={v} className="border rounded-xl py-3 bg-white/60 backdrop-blur shadow-sm">{v}</div>
-            ))}
+            {/* Trust strip */}
+            <div className="mt-12 space-y-6">
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center text-xs text-slate-500">
+                {["Microsoft 365", "Entra ID", "Intune", "Azure"].map((v) => (
+                  <div key={v} className="border rounded-xl py-3 bg-white/60 backdrop-blur shadow-sm">
+                    {v}
+                  </div>
+                ))}
+              </div>
+              <div className="bg-white/70 border border-slate-200/70 rounded-3xl p-6">
+                <h3 className="text-xs font-semibold uppercase tracking-wide text-slate-500 text-center">
+                  Who we work with
+                </h3>
+                <div className="mt-4 grid grid-cols-2 sm:grid-cols-4 gap-6 items-center justify-items-center">
+                  {partners.map((partner) => (
+                    <Image
+                      key={partner.name}
+                      src={partner.logo}
+                      alt={`${partner.name} logo`}
+                      width={partner.width}
+                      height={partner.height}
+                      className="h-10 w-auto object-contain"
+                    />
+                  ))}
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
       {/* Outcomes */}
       <section id="outcomes" className="py-12 border-y border-slate-200 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid sm:grid-cols-3 gap-6">
             {[
-              { kpi: "98%", label: "first-contact resolution" },
-              { kpi: "< 15 min", label: "average response time" },
-              { kpi: "99.9%", label: "patch & update success" },
+              { kpi: "40", label: "managed SMB & SME clients" },
+              { kpi: "15", label: "Microsoft 365 specialists on staff" },
+              { kpi: "30 days", label: "to full onboarding & governance" },
             ].map((i, idx) => (
               <Card key={idx} className="rounded-2xl">
                 <CardContent className="p-6">
@@ -222,7 +257,7 @@ export default function MockMSP() {
           <h2 className="text-2xl font-semibold tracking-tight">Industries we support</h2>
           <p className="mt-2 text-slate-600 max-w-2xl">Tailored controls and templates for regulated and high-growth sectors.</p>
           <div className="mt-8 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
-            {["Healthcare","Education","Professional Services","Manufacturing","Nonprofit","Public Sector"].map((v)=> (
+            {["Finance & Accounting", "Professional Services", "Scale-up SaaS", "Retail & Hospitality", "Nonprofit", "Light Manufacturing"].map((v) => (
               <Card key={v} className="rounded-xl">
                 <CardContent className="p-5 text-center font-medium flex items-center justify-center min-h-16">{v}</CardContent>
               </Card>
@@ -252,6 +287,63 @@ export default function MockMSP() {
                 </CardContent>
               </Card>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Differentiators */}
+      <section id="differentiators" className="py-16 bg-slate-900 text-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="md:flex items-start gap-12">
+            <div className="md:w-5/12">
+              <h2 className="text-2xl font-semibold tracking-tight">Why teams choose MockMSP</h2>
+              <p className="mt-3 text-slate-300">
+                Enterprise-grade controls with startup pace. We blend automation, Microsoft 365 governance, and a human support desk so leaders can
+                plan instead of putting out fires.
+              </p>
+              <div className="mt-6 grid grid-cols-2 gap-4 text-left text-sm text-slate-200">
+                <div className="rounded-2xl bg-white/10 px-4 py-3">
+                  <div className="text-2xl font-semibold">24/7</div>
+                  <p className="mt-1 text-slate-300">Security operations coverage</p>
+                </div>
+                <div className="rounded-2xl bg-white/10 px-4 py-3">
+                  <div className="text-2xl font-semibold">30+</div>
+                  <p className="mt-1 text-slate-300">Documented playbooks</p>
+                </div>
+              </div>
+            </div>
+            <div className="mt-10 md:mt-0 md:w-7/12 grid gap-4 sm:grid-cols-2">
+              {[
+                {
+                  title: "Security-first delivery",
+                  description:
+                    "Continuous configuration drift monitoring, MFA hardening, and compliance dashboards mapped to ISO 27001.",
+                },
+                {
+                  title: "Measurable success",
+                  description:
+                    "Monthly executive reviews with ticket analytics, roadmap recommendations, and budget clarity you can present upstream.",
+                },
+                {
+                  title: "Human escalation paths",
+                  description:
+                    "Named pod with senior engineers who join war rooms, not just send knowledge base links.",
+                },
+                {
+                  title: "Built for modern work",
+                  description:
+                    "Microsoft 365, Azure, and hybrid infrastructure expertise so distributed teams stay productive anywhere.",
+                },
+              ].map((item, index) => (
+                <Card key={item.title} className="rounded-2xl h-full bg-slate-800/60 border-slate-700/70 text-left">
+                  <CardContent className="p-6">
+                    <div className="text-sm uppercase tracking-wide text-slate-400">{String(index + 1).padStart(2, "0")}</div>
+                    <h3 className="mt-3 text-lg font-semibold text-white">{item.title}</h3>
+                    <p className="mt-2 text-sm text-slate-300 leading-relaxed">{item.description}</p>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -347,9 +439,10 @@ export default function MockMSP() {
                 <h3 className="text-lg font-semibold">Contact</h3>
                 <p className="text-sm text-slate-600">Tell us about your environment. We’ll come back with clear next steps.</p>
                 <div className="mt-4 space-y-2 text-sm text-slate-700">
-                  <div className="flex items-center gap-2"><Mail className="h-4 w-4" /> hello@mockmsp.com</div>
-                  <div className="flex items-center gap-2"><Phone className="h-4 w-4" /> +00 000 0000</div>
-                  <div className="flex items-center gap-2"><Globe className="h-4 w-4" /> www.mockmsp.com</div>
+                  <div className="flex items-center gap-2"><Mail className="h-4 w-4" /> hello@mockmsp.eu</div>
+                  <div className="flex items-center gap-2"><Phone className="h-4 w-4" /> +31 20 241 9980 (NL)</div>
+                  <div className="flex items-center gap-2"><Phone className="h-4 w-4" /> +44 20 4526 8920 (UK)</div>
+                  <div className="flex items-center gap-2"><Globe className="h-4 w-4" /> www.mockmsp.eu</div>
                 </div>
               </div>
               <div className="md:col-span-2">
@@ -366,50 +459,10 @@ export default function MockMSP() {
             </CardContent>
           </Card>
         </div>
-      </section>
+        </section>
+      </main>
 
-      {/* Footer */}
-      <footer className="py-10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-4 gap-8 text-sm">
-            <div>
-              <div className="flex items-center gap-2">
-                <div className="h-8 w-8 rounded-2xl bg-slate-900 text-white grid place-items-center"><Sparkles className="h-4 w-4" /></div>
-                <span className="font-semibold">MockMSP</span>
-              </div>
-              <p className="mt-3 text-slate-600">Managed IT & Security for modern businesses.</p>
-            </div>
-            <div>
-              <div className="font-semibold">Company</div>
-              <ul className="mt-3 space-y-2 text-slate-600">
-                <li><a href="#services" className="hover:text-slate-900">Services</a></li>
-                <li><a href="#pricing" className="hover:text-slate-900">Plans</a></li>
-                <li><a href="#faq" className="hover:text-slate-900">FAQ</a></li>
-              </ul>
-            </div>
-            <div>
-              <div className="font-semibold">Resources</div>
-              <ul className="mt-3 space-y-2 text-slate-600">
-                <li><a href="#" className="hover:text-slate-900">Service Catalog</a></li>
-                <li><a href="#" className="hover:text-slate-900">Incident Runbook</a></li>
-                <li><a href="#" className="hover:text-slate-900">Security Baseline</a></li>
-              </ul>
-            </div>
-            <div>
-              <div className="font-semibold">Compliance</div>
-              <ul className="mt-3 space-y-2 text-slate-600">
-                <li>ISO-aligned controls</li>
-                <li>DPA on request</li>
-                <li>EU data residency options</li>
-              </ul>
-            </div>
-          </div>
-          <div className="mt-8 border-t pt-6 text-xs text-slate-500 flex flex-wrap items-center justify-between gap-2">
-            <span>© {new Date().getFullYear()} MockMSP. All rights reserved.</span>
-            <span>Deurne · Netherlands</span>
-          </div>
-        </div>
-      </footer>
+      <SiteFooter />
     </div>
   );
 }
