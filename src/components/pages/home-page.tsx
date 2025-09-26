@@ -80,10 +80,10 @@ type HomePageProps = {
 
 export function HomePage({ locale, header, footer, content }: HomePageProps) {
   return (
-    <div className="flex min-h-screen flex-col bg-white text-slate-900" lang={locale}>
+    <div className="flex min-h-screen flex-col bg-background text-foreground" lang={locale}>
       <a
         href="#main"
-        className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 rounded-full bg-slate-900 px-4 py-2 text-sm font-semibold text-white"
+        className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 rounded-full bg-foreground px-4 py-2 text-sm font-semibold text-background"
       >
         Skip to content
       </a>
@@ -99,15 +99,15 @@ export function HomePage({ locale, header, footer, content }: HomePageProps) {
           <div className={containerClass}>
             <motion.div initial="initial" animate="animate" variants={stagger} className="grid gap-16 lg:grid-cols-[1.45fr_1fr]">
               <motion.div variants={fadeUp} className="space-y-6">
-                <div className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-teal-600/10 via-sky-600/10 to-emerald-500/10 px-4 py-1 text-xs font-semibold text-slate-700 shadow-sm">
+                <div className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-teal-600/10 via-sky-600/10 to-emerald-500/10 px-4 py-1 text-xs font-semibold text-muted-foreground shadow-sm">
                   <Sparkles className="h-3.5 w-3.5 text-teal-600" aria-hidden="true" />
                   {content.hero.eyebrow}
                 </div>
-                <h1 className="text-4xl font-semibold tracking-tight text-slate-900 sm:text-5xl">
+                <h1 className="text-4xl font-semibold tracking-tight text-foreground sm:text-5xl">
                   {content.hero.title}
                 </h1>
-                <p className="text-lg text-slate-600">{content.hero.subtitle}</p>
-                <div className="space-y-4 text-base text-slate-600">
+                <p className="text-lg text-muted-foreground">{content.hero.subtitle}</p>
+                <div className="space-y-4 text-base text-muted-foreground">
                   {content.hero.paragraphs.map((paragraph) => (
                     <p key={paragraph}>{paragraph}</p>
                   ))}
@@ -119,7 +119,7 @@ export function HomePage({ locale, header, footer, content }: HomePageProps) {
                       <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
                     </Link>
                   </Button>
-                  <Button variant="outline" className="rounded-full border-slate-200" asChild>
+                  <Button variant="outline" className="rounded-full border-border" asChild>
                     <Link href={content.hero.secondaryCta.href}>{content.hero.secondaryCta.label}</Link>
                   </Button>
                 </div>
@@ -127,10 +127,10 @@ export function HomePage({ locale, header, footer, content }: HomePageProps) {
                   {content.hero.stats.map((stat) => (
                     <div
                       key={stat.label}
-                      className="rounded-2xl border border-slate-200/70 bg-white/70 p-4 shadow-sm"
+                      className="rounded-2xl border border-border/70 bg-card/70 p-4 shadow-sm"
                     >
-                      <div className="text-2xl font-semibold text-slate-900">{stat.value}</div>
-                      <p className="mt-1 text-sm text-slate-600">{stat.label}</p>
+                      <div className="text-2xl font-semibold text-foreground">{stat.value}</div>
+                      <p className="mt-1 text-sm text-muted-foreground">{stat.label}</p>
                     </div>
                   ))}
                 </div>
@@ -140,7 +140,7 @@ export function HomePage({ locale, header, footer, content }: HomePageProps) {
                     return (
                       <div
                         key={item.text}
-                        className="flex items-start gap-3 rounded-2xl border border-slate-200/70 bg-white/80 p-4 text-sm text-slate-600 shadow-sm"
+                        className="flex items-start gap-3 rounded-2xl border border-border/70 bg-card/80 p-4 text-sm text-muted-foreground shadow-sm"
                       >
                         <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-teal-500/20 via-sky-500/20 to-emerald-500/20">
                           <Icon className="h-4 w-4 text-teal-600" aria-hidden="true" />
@@ -156,20 +156,20 @@ export function HomePage({ locale, header, footer, content }: HomePageProps) {
                 <Card className="h-full overflow-hidden rounded-3xl border-none bg-gradient-to-br from-slate-900 via-sky-950 to-emerald-900 text-white shadow-xl">
                   <CardHeader className="space-y-1">
                     <CardTitle className="text-xl font-semibold">{content.hero.card.title}</CardTitle>
-                    <CardDescription className="text-sm text-slate-200">
+                    <CardDescription className="text-sm text-muted-foreground">
                       {content.hero.card.subtitle}
                     </CardDescription>
                   </CardHeader>
                   <CardContent className="space-y-4">
                     <div className="grid gap-4">
                       {content.hero.card.metrics.map((metric) => (
-                        <div key={metric.label} className="flex items-center justify-between rounded-2xl bg-white/10 px-4 py-3">
-                          <span className="text-sm text-slate-200">{metric.label}</span>
+                        <div key={metric.label} className="flex items-center justify-between rounded-2xl bg-card/10 px-4 py-3">
+                          <span className="text-sm text-muted-foreground">{metric.label}</span>
                           <span className="text-lg font-semibold text-white">{metric.value}</span>
                         </div>
                       ))}
                     </div>
-                    <p className="text-xs text-slate-200/80">{content.hero.card.footer}</p>
+                    <p className="text-xs text-muted-foreground/80">{content.hero.card.footer}</p>
                   </CardContent>
                 </Card>
               </motion.div>
@@ -179,12 +179,12 @@ export function HomePage({ locale, header, footer, content }: HomePageProps) {
 
         <section className="pb-16">
           <div className={containerClass}>
-            <div className="rounded-3xl border border-slate-200/70 bg-white/80 p-8 shadow-lg">
+            <div className="rounded-3xl border border-border/70 bg-card/80 p-8 shadow-lg">
               <div className="text-center">
-                <h2 className="text-sm font-semibold uppercase tracking-wide text-slate-500">
+                <h2 className="text-sm font-semibold uppercase tracking-wide text-muted-foreground">
                   {content.partners.title}
                 </h2>
-                <p className="mt-2 text-base text-slate-600">{content.partners.description}</p>
+                <p className="mt-2 text-base text-muted-foreground">{content.partners.description}</p>
               </div>
               <div className="mt-8 grid grid-cols-2 gap-6 sm:grid-cols-3 md:grid-cols-5 items-center justify-items-center">
                 {partnerLogos.map((partner) => (
@@ -205,15 +205,15 @@ export function HomePage({ locale, header, footer, content }: HomePageProps) {
         <section id="outcomes" className="bg-gradient-to-r from-teal-50 via-white to-emerald-50 py-16 scroll-mt-32">
           <div className={containerClass}>
             <div className="mx-auto grid gap-6 text-center sm:max-w-3xl">
-              <h2 className="text-2xl font-semibold text-slate-900">{content.outcomes.title}</h2>
-              <p className="text-slate-600">{content.outcomes.description}</p>
+              <h2 className="text-2xl font-semibold text-foreground">{content.outcomes.title}</h2>
+              <p className="text-muted-foreground">{content.outcomes.description}</p>
             </div>
             <div className="mt-10 grid gap-6 sm:grid-cols-3">
               {content.outcomes.items.map((item) => (
-                <Card key={item.label} className="rounded-2xl border border-slate-200/70 bg-white/70 shadow-sm">
+                <Card key={item.label} className="rounded-2xl border border-border/70 bg-card/70 shadow-sm">
                   <CardContent className="p-6">
-                    <div className="text-3xl font-semibold text-slate-900">{item.value}</div>
-                    <p className="mt-2 text-sm text-slate-600">{item.label}</p>
+                    <div className="text-3xl font-semibold text-foreground">{item.value}</div>
+                    <p className="mt-2 text-sm text-muted-foreground">{item.label}</p>
                   </CardContent>
                 </Card>
               ))}
@@ -225,10 +225,10 @@ export function HomePage({ locale, header, footer, content }: HomePageProps) {
           <div className={containerClass}>
             <div className="md:flex md:items-end md:justify-between">
               <div className="max-w-3xl space-y-3">
-                <h2 className="text-3xl font-semibold text-slate-900">{content.services.title}</h2>
-                <p className="text-slate-600">{content.services.description}</p>
+                <h2 className="text-3xl font-semibold text-foreground">{content.services.title}</h2>
+                <p className="text-muted-foreground">{content.services.description}</p>
               </div>
-              <Button variant="outline" className="mt-6 rounded-full border-slate-200 md:mt-0" asChild>
+              <Button variant="outline" className="mt-6 rounded-full border-border md:mt-0" asChild>
                 <Link href="#contact">{content.hero.secondaryCta.label}</Link>
               </Button>
             </div>
@@ -238,20 +238,20 @@ export function HomePage({ locale, header, footer, content }: HomePageProps) {
                 return (
                   <Card
                     key={item.title}
-                    className={`group h-full rounded-3xl border border-slate-200/70 bg-white/80 shadow-lg transition hover:-translate-y-1 hover:shadow-xl`}
+                    className={`group h-full rounded-3xl border border-border/70 bg-card/80 shadow-lg transition hover:-translate-y-1 hover:shadow-xl`}
                   >
                     <div className={`h-32 w-full rounded-t-3xl bg-gradient-to-br ${item.accent}`} />
                     <CardHeader className="-mt-16 space-y-4">
-                      <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-white shadow-sm">
+                      <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-card shadow-sm">
                         <Icon className="h-6 w-6 text-teal-600" aria-hidden="true" />
                       </div>
-                      <CardTitle className="text-xl text-slate-900">{item.title}</CardTitle>
-                      <CardDescription className="text-sm text-slate-600">
+                      <CardTitle className="text-xl text-foreground">{item.title}</CardTitle>
+                      <CardDescription className="text-sm text-muted-foreground">
                         {item.description}
                       </CardDescription>
                     </CardHeader>
                     <CardContent>
-                      <ul className="space-y-3 text-sm text-slate-600">
+                      <ul className="space-y-3 text-sm text-muted-foreground">
                         {item.features.map((feature) => (
                           <li key={feature} className="flex items-start gap-2">
                             <ShieldCheck className="mt-0.5 h-4 w-4 text-teal-600" aria-hidden="true" />
@@ -275,20 +275,20 @@ export function HomePage({ locale, header, footer, content }: HomePageProps) {
           <div className={containerClass}>
             <div className="grid gap-8 lg:grid-cols-[1.1fr_1fr]">
               <div className="space-y-4">
-                <h2 className="text-2xl font-semibold text-slate-900">{content.accelerators.title}</h2>
-                <p className="text-slate-600">{content.accelerators.description}</p>
+                <h2 className="text-2xl font-semibold text-foreground">{content.accelerators.title}</h2>
+                <p className="text-muted-foreground">{content.accelerators.description}</p>
                 <div className="grid gap-4 md:grid-cols-2">
                   {content.accelerators.items.map((item, index) => {
                     const Icon = acceleratorIcons[index] ?? Workflow;
                     return (
-                      <Card key={item.title} className="rounded-3xl border border-slate-200/70 bg-white/80 shadow-sm">
+                      <Card key={item.title} className="rounded-3xl border border-border/70 bg-card/80 shadow-sm">
                         <CardContent className="space-y-3 p-6">
                           <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-gradient-to-br from-sky-500/10 to-emerald-500/10">
                             <Icon className="h-5 w-5 text-sky-600" aria-hidden="true" />
                           </div>
-                          <h3 className="text-lg font-semibold text-slate-900">{item.title}</h3>
-                          <p className="text-sm text-slate-600 leading-relaxed">{item.description}</p>
-                          <div className="inline-flex items-center gap-2 rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-700">
+                          <h3 className="text-lg font-semibold text-foreground">{item.title}</h3>
+                          <p className="text-sm text-muted-foreground leading-relaxed">{item.description}</p>
+                          <div className="inline-flex items-center gap-2 rounded-full bg-muted px-3 py-1 text-xs font-semibold text-muted-foreground">
                             {item.metric.value} {item.metric.label}
                           </div>
                         </CardContent>
@@ -297,21 +297,21 @@ export function HomePage({ locale, header, footer, content }: HomePageProps) {
                   })}
                 </div>
               </div>
-              <Card className="rounded-3xl border border-slate-200/70 bg-gradient-to-br from-slate-900 via-sky-950 to-emerald-900 text-white shadow-xl">
+              <Card className="rounded-3xl border border-border/70 bg-gradient-to-br from-slate-900 via-sky-950 to-emerald-900 text-white shadow-xl">
                 <CardContent className="space-y-4 p-8">
                   <h3 className="text-lg font-semibold text-white">{content.differentiators.title}</h3>
-                  <p className="text-sm text-slate-200">{content.differentiators.description}</p>
+                  <p className="text-sm text-muted-foreground">{content.differentiators.description}</p>
                   <div className="space-y-4">
                     {content.differentiators.items.map((item, index) => {
                       const Icon = differentiatorIcons[index] ?? ShieldCheck;
                       return (
-                        <div key={item.title} className="flex items-start gap-3 rounded-2xl bg-white/10 p-4 text-sm text-slate-200">
-                          <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-white/10">
+                        <div key={item.title} className="flex items-start gap-3 rounded-2xl bg-card/10 p-4 text-sm text-muted-foreground">
+                          <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-card/10">
                             <Icon className="h-4 w-4 text-emerald-300" aria-hidden="true" />
                           </div>
                           <div>
                             <div className="font-semibold text-white">{item.title}</div>
-                            <p className="mt-1 text-xs text-slate-200/80">{item.description}</p>
+                            <p className="mt-1 text-xs text-muted-foreground/80">{item.description}</p>
                           </div>
                         </div>
                       );
@@ -323,16 +323,16 @@ export function HomePage({ locale, header, footer, content }: HomePageProps) {
           </div>
         </section>
 
-        <section id="industries" className="border-y border-slate-200/70 bg-white py-20 scroll-mt-32">
+        <section id="industries" className="border-y border-border/70 bg-card py-20 scroll-mt-32">
           <div className={containerClass}>
             <div className="space-y-4 text-center">
-              <h2 className="text-2xl font-semibold text-slate-900">{content.industries.title}</h2>
-              <p className="text-slate-600">{content.industries.description}</p>
+              <h2 className="text-2xl font-semibold text-foreground">{content.industries.title}</h2>
+              <p className="text-muted-foreground">{content.industries.description}</p>
             </div>
             <div className="mt-10 grid gap-4 sm:grid-cols-3 lg:grid-cols-6">
               {content.industries.items.map((item) => (
-                <Card key={item} className="rounded-2xl border border-slate-200/70 bg-white/80 text-center shadow-sm">
-                  <CardContent className="flex min-h-24 items-center justify-center p-4 text-sm font-medium text-slate-700">
+                <Card key={item} className="rounded-2xl border border-border/70 bg-card/80 text-center shadow-sm">
+                  <CardContent className="flex min-h-24 items-center justify-center p-4 text-sm font-medium text-muted-foreground">
                     {item}
                   </CardContent>
                 </Card>
@@ -345,16 +345,16 @@ export function HomePage({ locale, header, footer, content }: HomePageProps) {
           <div className={containerClass}>
             <div className="grid gap-8 lg:grid-cols-[1fr_1.2fr]">
               <div className="space-y-4">
-                <h2 className="text-2xl font-semibold text-slate-900">{content.process.title}</h2>
-                <p className="text-slate-600">{content.process.description}</p>
+                <h2 className="text-2xl font-semibold text-foreground">{content.process.title}</h2>
+                <p className="text-muted-foreground">{content.process.description}</p>
               </div>
               <div className="grid gap-4 sm:grid-cols-2">
                 {content.process.steps.map((step) => (
-                  <Card key={step.step} className="rounded-3xl border border-slate-200/70 bg-white/80 shadow-sm">
+                  <Card key={step.step} className="rounded-3xl border border-border/70 bg-card/80 shadow-sm">
                     <CardContent className="space-y-3 p-6">
                       <div className="text-xs font-semibold uppercase tracking-wide text-teal-600">{step.step}</div>
-                      <div className="text-lg font-semibold text-slate-900">{step.title}</div>
-                      <p className="text-sm text-slate-600">{step.description}</p>
+                      <div className="text-lg font-semibold text-foreground">{step.title}</div>
+                      <p className="text-sm text-muted-foreground">{step.description}</p>
                     </CardContent>
                   </Card>
                 ))}
@@ -368,15 +368,15 @@ export function HomePage({ locale, header, footer, content }: HomePageProps) {
             <div className="md:flex md:items-center md:justify-between">
               <div className="max-w-3xl space-y-3">
                 <h2 className="text-2xl font-semibold text-white">{content.testimonials.title}</h2>
-                <p className="text-sm text-slate-200">{content.differentiators.description}</p>
+                <p className="text-sm text-muted-foreground">{content.differentiators.description}</p>
               </div>
             </div>
             <div className="mt-10 grid gap-6 md:grid-cols-3">
               {content.testimonials.items.map((testimonial) => (
-                <Card key={testimonial.quote} className="h-full rounded-3xl border border-white/10 bg-white/10 text-left">
+                <Card key={testimonial.quote} className="h-full rounded-3xl border border-white/10 bg-card/10 text-left">
                   <CardContent className="space-y-4 p-6">
                     <Quote className="h-6 w-6 text-emerald-300" aria-hidden="true" />
-                    <p className="text-sm leading-relaxed text-slate-100">{testimonial.quote}</p>
+                    <p className="text-sm leading-relaxed text-foreground">{testimonial.quote}</p>
                     <p className="text-xs font-semibold uppercase tracking-wide text-emerald-200">
                       {testimonial.name}
                     </p>
@@ -390,14 +390,14 @@ export function HomePage({ locale, header, footer, content }: HomePageProps) {
         <section id="pricing" className="py-20 scroll-mt-32">
           <div className={containerClass}>
             <div className="mx-auto max-w-3xl space-y-3 text-center">
-              <h2 className="text-2xl font-semibold text-slate-900">{content.plans.title}</h2>
-              <p className="text-slate-600">{content.plans.description}</p>
+              <h2 className="text-2xl font-semibold text-foreground">{content.plans.title}</h2>
+              <p className="text-muted-foreground">{content.plans.description}</p>
             </div>
             <div className="mt-12 grid gap-6 md:grid-cols-3">
               {content.plans.items.map((plan) => (
                 <Card
                   key={plan.name}
-                  className={`relative h-full rounded-3xl border border-slate-200/70 bg-white/80 shadow-lg transition hover:-translate-y-1 hover:shadow-xl ${
+                  className={`relative h-full rounded-3xl border border-border/70 bg-card/80 shadow-lg transition hover:-translate-y-1 hover:shadow-xl ${
                     plan.featured ? "ring-2 ring-sky-300" : ""
                   }`}
                 >
@@ -407,13 +407,13 @@ export function HomePage({ locale, header, footer, content }: HomePageProps) {
                     </span>
                   )}
                   <CardHeader className="space-y-2">
-                    <CardTitle className="text-xl text-slate-900">{plan.name}</CardTitle>
-                    <CardDescription className="text-sm text-slate-600">
+                    <CardTitle className="text-xl text-foreground">{plan.name}</CardTitle>
+                    <CardDescription className="text-sm text-muted-foreground">
                       {plan.tagline}
                     </CardDescription>
                   </CardHeader>
                   <CardContent>
-                    <ul className="space-y-3 text-sm text-slate-600">
+                    <ul className="space-y-3 text-sm text-muted-foreground">
                       {plan.features.map((feature) => (
                         <li key={feature} className="flex items-start gap-2">
                           <ShieldCheck className="mt-0.5 h-4 w-4 text-teal-600" aria-hidden="true" />
@@ -433,14 +433,14 @@ export function HomePage({ locale, header, footer, content }: HomePageProps) {
 
         <section id="faq" className="py-20 scroll-mt-32">
           <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-2xl font-semibold text-slate-900">{content.faq.title}</h2>
-            <Accordion type="single" collapsible className="mt-6 divide-y divide-slate-200 rounded-2xl border border-slate-200/70 bg-white/80 shadow-sm">
+            <h2 className="text-2xl font-semibold text-foreground">{content.faq.title}</h2>
+            <Accordion type="single" collapsible className="mt-6 divide-y divide-border rounded-2xl border border-border/70 bg-card/80 shadow-sm">
               {content.faq.items.map((item, index) => (
                 <AccordionItem key={item.question} value={`item-${index}`} className="px-4">
-                  <AccordionTrigger className="text-left text-sm font-semibold text-slate-900">
+                  <AccordionTrigger className="text-left text-sm font-semibold text-foreground">
                     {item.question}
                   </AccordionTrigger>
-                  <AccordionContent className="text-sm text-slate-600">
+                  <AccordionContent className="text-sm text-muted-foreground">
                     {item.answer}
                   </AccordionContent>
                 </AccordionItem>
@@ -451,19 +451,19 @@ export function HomePage({ locale, header, footer, content }: HomePageProps) {
 
         <section id="contact" className="pb-24 scroll-mt-32">
           <div className={contactContainerClass}>
-            <Card className="rounded-3xl border border-slate-200/70 bg-white/80 shadow-xl">
+            <Card className="rounded-3xl border border-border/70 bg-card/80 shadow-xl">
               <CardContent className="grid gap-12 p-8 lg:grid-cols-[1fr_1.3fr]">
                 <div className="space-y-4">
-                  <h2 className="text-2xl font-semibold text-slate-900">{content.contact.title}</h2>
-                  <p className="text-sm text-slate-600 leading-relaxed">{content.contact.description}</p>
+                  <h2 className="text-2xl font-semibold text-foreground">{content.contact.title}</h2>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{content.contact.description}</p>
                   <div className="space-y-3">
                     {content.contact.info.map((info) => {
                       const Icon = contactIconFor(info.label);
                       return (
-                        <div key={`${info.label}-${info.value}`} className="flex items-center gap-3 text-sm text-slate-700">
+                        <div key={`${info.label}-${info.value}`} className="flex items-center gap-3 text-sm text-muted-foreground">
                           <Icon className="h-4 w-4 text-teal-600" aria-hidden="true" />
                           <span>
-                            <span className="font-semibold text-slate-900">{info.label}:</span> {info.value}
+                            <span className="font-semibold text-foreground">{info.label}:</span> {info.value}
                           </span>
                         </div>
                       );
@@ -484,7 +484,7 @@ export function HomePage({ locale, header, footer, content }: HomePageProps) {
                           <textarea
                             required
                             placeholder={field.placeholder}
-                            className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-700 shadow-inner focus:border-teal-400 focus:outline-none focus:ring-2 focus:ring-teal-100"
+                            className="w-full rounded-2xl border border-border bg-card px-4 py-3 text-sm text-muted-foreground shadow-inner focus:border-teal-400 focus:outline-none focus:ring-2 focus:ring-teal-100"
                             rows={4}
                           />
                         </div>
@@ -496,12 +496,12 @@ export function HomePage({ locale, header, footer, content }: HomePageProps) {
                         type={field.type}
                         required
                         placeholder={field.placeholder}
-                        className="rounded-2xl border-slate-200 bg-white text-sm text-slate-700 shadow-inner focus:border-teal-400 focus-visible:ring-teal-100"
+                        className="rounded-2xl border-border bg-card text-sm text-muted-foreground shadow-inner focus:border-teal-400 focus-visible:ring-teal-100"
                       />
                     );
                   })}
                   <div className="sm:col-span-2 space-y-3">
-                    <p className="text-xs text-slate-500">{content.contact.consent}</p>
+                    <p className="text-xs text-muted-foreground">{content.contact.consent}</p>
                     <div className="flex justify-end">
                       <Button type="submit" className="rounded-full px-6">
                         {content.contact.cta}
