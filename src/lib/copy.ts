@@ -371,11 +371,12 @@ export const copy = {
         description:
           "Tell us about your Microsoft 365 estate and growth goals. We'll return a tailored plan within two business days.",
         fields: [
-          { name: "name", placeholder: "Full name", type: "text" },
-          { name: "email", placeholder: "Work email", type: "email" },
-          { name: "company", placeholder: "Company", type: "text" },
+          { name: "name", label: "Full name", placeholder: "Full name", type: "text" },
+          { name: "email", label: "Work email", placeholder: "Work email", type: "email" },
+          { name: "company", label: "Company", placeholder: "Company", type: "text" },
           {
             name: "challenge",
+            label: "Current challenge",
             placeholder: "What's your biggest challenge right now?",
             type: "text",
           },
@@ -946,11 +947,12 @@ export const copy = {
         description:
           "Vertel ons over uw Microsoft 365-omgeving en groeidoelen. U ontvangt binnen twee werkdagen een voorstel.",
         fields: [
-          { name: "name", placeholder: "Volledige naam", type: "text" },
-          { name: "email", placeholder: "Zakelijk e-mailadres", type: "email" },
-          { name: "company", placeholder: "Organisatie", type: "text" },
+          { name: "name", label: "Volledige naam", placeholder: "Volledige naam", type: "text" },
+          { name: "email", label: "Zakelijk e-mailadres", placeholder: "Zakelijk e-mailadres", type: "email" },
+          { name: "company", label: "Organisatie", placeholder: "Organisatie", type: "text" },
           {
             name: "challenge",
+            label: "Belangrijkste uitdaging",
             placeholder: "Wat is momenteel uw grootste uitdaging?",
             type: "text",
           },

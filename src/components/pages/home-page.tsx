@@ -477,11 +477,20 @@ export function HomePage({ locale, header, footer, content }: HomePageProps) {
                   }}
                 >
                   {content.contact.fields.map((field) => {
+                    const fieldId = `contact-${field.name}`;
                     const isMessageField = field.name === "challenge";
                     if (isMessageField) {
                       return (
-                        <div key={field.name} className="sm:col-span-2">
+                        <div key={field.name} className="sm:col-span-2 space-y-2">
+                          <label
+                            htmlFor={fieldId}
+                            className="block text-xs font-semibold uppercase tracking-wide text-muted-foreground"
+                          >
+                            {field.label}
+                          </label>
                           <textarea
+                            id={fieldId}
+                            name={field.name}
                             required
                             placeholder={field.placeholder}
                             className="w-full rounded-2xl border border-border bg-card px-4 py-3 text-sm text-muted-foreground shadow-inner focus:border-teal-400 focus:outline-none focus:ring-2 focus:ring-teal-100"
@@ -491,13 +500,22 @@ export function HomePage({ locale, header, footer, content }: HomePageProps) {
                       );
                     }
                     return (
-                      <Input
-                        key={field.name}
-                        type={field.type}
-                        required
-                        placeholder={field.placeholder}
-                        className="rounded-2xl border-border bg-card text-sm text-muted-foreground shadow-inner focus:border-teal-400 focus-visible:ring-teal-100"
-                      />
+                      <div key={field.name} className="space-y-2">
+                        <label
+                          htmlFor={fieldId}
+                          className="block text-xs font-semibold uppercase tracking-wide text-muted-foreground"
+                        >
+                          {field.label}
+                        </label>
+                        <Input
+                          id={fieldId}
+                          name={field.name}
+                          type={field.type}
+                          required
+                          placeholder={field.placeholder}
+                          className="rounded-2xl border-border bg-card text-sm text-muted-foreground shadow-inner focus:border-teal-400 focus-visible:ring-teal-100"
+                        />
+                      </div>
                     );
                   })}
                   <div className="sm:col-span-2 space-y-3">
