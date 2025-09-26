@@ -50,7 +50,7 @@ export function SiteFooter({ locale, copy }: SiteFooterProps) {
                     <li key={link.label}>
                       <Link
                         href={resolveHref(link.href)}
-                        className="inline-flex items-center gap-1 text-slate-200/90 transition hover:text-white"
+                        className="inline-flex items-center gap-1 text-slate-200/90 transition hover:text-white focus-visible:outline-none focus-visible:text-white focus-visible:underline focus-visible:decoration-sky-300 focus-visible:underline-offset-4"
                       >
                         <span>{link.label}</span>
                         <ArrowUpRight className="h-3.5 w-3.5" aria-hidden="true" />
@@ -66,7 +66,11 @@ export function SiteFooter({ locale, copy }: SiteFooterProps) {
           <span>© {new Date().getFullYear()} MockMSP. All rights reserved.</span>
           <div className="flex flex-wrap items-center gap-4">
             {copy.legal.map((item) => (
-              <Link key={item.label} href={resolveHref(item.href)} className="hover:text-white">
+              <Link
+                key={item.label}
+                href={resolveHref(item.href)}
+                className="hover:text-white focus-visible:outline-none focus-visible:text-white focus-visible:underline focus-visible:decoration-sky-300 focus-visible:underline-offset-4"
+              >
                 {item.label}
               </Link>
             ))}
